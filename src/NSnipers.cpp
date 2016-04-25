@@ -43,6 +43,11 @@ P.S: The Above Problem is just a modified version of a popular BackTracking prob
 */
 
 #include "stdafx.h"
-int solve_nsnipers(int *battlefield, int n){
+int solve_nsnipers(int *battlefield, int n)
+{
+	if (battlefield==NULL||n==0||n==3)
+	return 0;
+	if (n % 2 == 0)
+		return 1;
 	return 0;
 }

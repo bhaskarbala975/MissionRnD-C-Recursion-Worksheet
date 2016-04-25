@@ -36,5 +36,46 @@ Note : Check the function Parameters ,Its a double pointer .
 
 int *spiral(int rows, int columns, int **input_array)
 {
-	return NULL;
+	if (input_array == NULL||rows<=0||columns<=0)
+		return NULL;
+	int count=0, size, rowmin=0, rowmax=rows-1, colmin=0, colmax=columns-1;
+	size = rows*columns;
+	int *array;
+	array = (int*)malloc(size*sizeof(int));
+	while (count < size)
+	{
+		for (int i = colmin; i < columns; i++)
+		{
+			array[count] = input_array[rowmin][i];
+			count++;
+			if (count == size)
+				break;
+		}
+		for (int j = rowmin + 1; j < rows; j++)
+		{
+			array[count] = input_array[j][columns-1];
+			count++;
+		}
+		if (count == size)
+			break;
+		for (int r = columns - 2; r > colmin; r--)
+		{
+			array[count] = input_array[rows-1][r];
+			count++;
+		}
+		if (count == size)
+			break;
+		for (int r = rows - 1; r > rowmin; r--)
+		{
+			array[count] = input_array[r][colmin];
+			count++;
+		}
+		rowmin++;
+		colmin++;
+		rows--;
+		columns--;
+
+	}
+	return array;
+	
 }

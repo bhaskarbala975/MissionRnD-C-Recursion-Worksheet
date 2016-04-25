@@ -38,5 +38,57 @@ more parameters .
 
 int path_exists(int *maze, int rows, int columns, int x1, int y1, int x2, int y2)
 {
-	return 1;
+	
+	if (x1 == x2 && y1 == y2)
+		return 1;
+
+	if (x1 + 1 < rows)
+	{
+
+		if (maze[(x1 + 1)*columns + y1] == 1)
+		{
+			maze[(x1 + 1)*columns + y1] = -1;
+			if (path_exists(maze, rows, columns, x1 + 1, y1, x2, y2))
+				return 1;
+
+		}
+	}
+	if (y1 + 1 < columns)
+	{
+
+		if (maze[x1*columns + y1 + 1] == 1)
+		{
+					maze[x1*columns + y1 + 1] = -1;
+			if (path_exists(maze, rows, columns, x1, y1 + 1, x2, y2))
+				return 1;
+
+		}
+	}
+	if (y1 - 1 >= 0)
+	{
+
+
+		if (maze[x1*columns + y1 - 1] == 1)
+		{
+			maze[x1*columns + y1 - 1] = -1;
+			if (path_exists(maze, rows, columns, x1, y1 - 1, x2, y2))
+				return 1;
+
+		}
+	if (x1 - 1 >= 0)
+	{
+
+		if (maze[(x1 - 1)*columns + y1] == 1)
+		{
+			
+			maze[(x1 - 1)*columns + y1] = -1;
+			if (path_exists(maze, rows, columns, x1 - 1, y1, x2, y2))
+				return 1;
+
+		}
+	}
+
+	
+	}
+	return 0;
 }
